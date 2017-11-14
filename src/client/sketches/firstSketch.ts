@@ -1,4 +1,4 @@
-import P5Sketch from './sketch'
+import P5Sketch from '../common/sketch'
 
 const setup = (p5: p5) => {
   p5.createCanvas(window.innerWidth, window.innerHeight)

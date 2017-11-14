@@ -14,7 +14,9 @@ var paths = {
   serverOutFiles: ['dist/*.js'],
   serverOutFolder: 'dist',
   serverSourceFiles: ['src/server.ts'],
-  clientSourceFiles: ['src/www/**/*.ts'],
+  clientSourceFiles: ['src/client/**/*.ts'],
+  jadeSourceFiles: ['src/views/*.jade'],
+  jadeDist: 'dist/views',
   sourceFolder: 'src'
 }
 
@@ -22,6 +24,10 @@ var tsProject = ts.createProject('tsconfig.json')
 
 gulp.task('copy-html', function() {
   return gulp.src(paths.pages).pipe(gulp.dest(paths.clientOutFolder))
+})
+
+gulp.task('copy-jade', function() {
+  return gulp.src(paths.jadeSourceFiles).pipe(gulp.dest(paths.jadeDist))
 })
 
 gulp.task('server-typescript', function() {
@@ -35,7 +41,7 @@ gulp.task('client-typescript', function() {
   return browserify({
     basedir: '.',
     debug: true,
-    entries: ['src/www/main.ts'],
+    entries: ['src/client/main.ts'],
     cache: {},
     packageCache: {}
   })
@@ -45,7 +51,12 @@ gulp.task('client-typescript', function() {
     .pipe(gulp.dest(paths.clientOutFolder))
 })
 
-gulp.task('build', ['copy-html', 'server-typescript', 'client-typescript'])
+gulp.task('build', [
+  'copy-html',
+  'copy-jade',
+  'server-typescript',
+  'client-typescript'
+])
 
 gulp.task('nodemon', ['build'], function() {
   nodemon({
@@ -57,6 +68,7 @@ gulp.task('nodemon', ['build'], function() {
 
 gulp.task('watch', function() {
   gulp.watch(paths.pages, ['copy-html'])
+  gulp.watch(paths.jadeSourceFiles, ['copy-jade'])
   gulp.watch(paths.serverSourceFiles, ['server-typescript'])
   gulp.watch(paths.clientSourceFiles, ['client-typescript'])
   gulp.watch(paths.clientOutFiles).on('change', browserSync.reload)

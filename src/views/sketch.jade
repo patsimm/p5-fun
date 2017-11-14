@@ -1,0 +1,10 @@
+doctype html
+html(lang="en")
+  head
+    title= sketch
+    script.
+      window.sketch="#{sketch}"
+  body
+    h1= sketch
+    #p5sketch
+    script(src="/bundle.js")
