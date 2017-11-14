@@ -16,6 +16,7 @@ var paths = {
   serverSourceFiles: ['src/server.ts'],
   clientSourceFiles: ['src/client/**/*.ts'],
   jadeSourceFiles: ['src/views/*.jade'],
+  jadeOutFiles: ['dist/views/*.jade'],
   jadeDist: 'dist/views',
   sourceFolder: 'src'
 }
@@ -72,6 +73,7 @@ gulp.task('watch', function() {
   gulp.watch(paths.serverSourceFiles, ['server-typescript'])
   gulp.watch(paths.clientSourceFiles, ['client-typescript'])
   gulp.watch(paths.clientOutFiles).on('change', browserSync.reload)
+  gulp.watch(paths.jadeOutFiles).on('change', browserSync.reload)
 })
 
 gulp.task('browser-sync', ['nodemon'], function() {

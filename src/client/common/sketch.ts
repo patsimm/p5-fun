@@ -1,4 +1,5 @@
 import * as p5 from 'p5'
+import './p5.d'
 
 interface Sketch {
   run: () => void

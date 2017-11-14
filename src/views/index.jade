@@ -1,0 +1,10 @@
+doctype html
+html(lang="en")
+  head
+    title= "Hello"
+  body
+    h1= "Sketches"
+    ul
+      each name in sketchNames
+        li
+          a(href= "/sketch/#{name}")= name

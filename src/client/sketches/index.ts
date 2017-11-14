@@ -10,3 +10,5 @@ const sketches = {
 } as SketchList
 
 export default sketches
+
+export const sketchNames = Object.keys(sketches)
