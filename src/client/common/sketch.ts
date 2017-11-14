@@ -1,10 +1,10 @@
 import * as p5 from 'p5'
 
 interface Sketch {
-  run: (void): void
+  run: () => void
 }
 
-export default class P5Sketch extends Sketch {
+export default class P5Sketch implements Sketch {
   setup: (sketch: p5) => void
   draw: (sketch: p5) => void
   myp5: any
