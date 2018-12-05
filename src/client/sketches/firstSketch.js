@@ -1,10 +1,17 @@
+import p5 from 'p5'
 import P5Sketch from '../common/sketch'
 
-const setup = (p5: p5) => {
+/**
+ * @param {p5} p5
+ */
+const setup = p5 => {
   p5.createCanvas(window.innerWidth, window.innerHeight)
 }
 
-const draw = (p5: p5) => {
+/**
+ * @param {p5} p5
+ */
+const draw = p5 => {
   if (p5.mouseIsPressed) {
     p5.fill(0)
   } else {

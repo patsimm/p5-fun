@@ -1,18 +1,15 @@
-import * as express from 'express'
-import * as path from 'path'
+import express from 'express'
+import path from 'path'
 import sketchNames from './sketches'
 const app = express()
 
 export default class SketchServer {
-  app: express.Application
-  sketchNames: string[]
-
   constructor() {
     this.app = express()
     this.sketchNames = sketchNames
   }
 
-  serve(port: number) {
+  serve(port) {
     app.use('/static', express.static(path.join(__dirname, '/www')))
 
     app.set('views', path.join(__dirname, '/views'))
@@ -27,7 +24,9 @@ export default class SketchServer {
       res.render('index.jade', { sketchNames: this.sketchNames })
     })
 
-    app.listen(port)
+    app.listen(port, () => {
+      console.log(`Listening on http://localhost:${port}`)
+    })
   }
 }
 

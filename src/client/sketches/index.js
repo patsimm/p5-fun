@@ -1,13 +1,13 @@
 import P5Sketch from '../common/sketch'
+import chaos from './chaos'
 import firstSketch from './firstSketch'
-
-interface SketchList {
-  [sketchName: string]: P5Sketch
-}
+import tree from './tree'
 
 const sketches = {
-  firstSketch
-} as SketchList
+  firstSketch,
+  tree,
+  chaos
+}
 
 export default sketches
 
